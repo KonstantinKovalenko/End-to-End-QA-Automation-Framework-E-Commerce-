@@ -15,6 +15,9 @@ class ProductsPage {
 
     async #getProductByIndex(index: number){
         const array = await this.#productsInfoArray
+        if(await array.length === 0){
+            throw new Error ('getProductByIndex: products not found or page was not loaded')
+        }
         return array[index]
     }
 
@@ -25,6 +28,7 @@ class ProductsPage {
 
     async openInfoByIndex (index: number){
         const link = await this.#viewProductBtnsArray
+        await link[index].waitForClickable()
         await link[index].click()
     }
 }

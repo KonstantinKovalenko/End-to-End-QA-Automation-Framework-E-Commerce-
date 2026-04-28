@@ -4,7 +4,7 @@ export function parsePrice (priceInput: string){
     }
     const resultPrice = priceInput.match(/\d+(\.\d+)?/)
     if(!resultPrice){
-        throw new Error (`parsePrice: no price found in ${resultPrice}`)
+        throw new Error (`parsePrice: no price found in ${priceInput}`)
     }
     return parseFloat(resultPrice[0])
 }

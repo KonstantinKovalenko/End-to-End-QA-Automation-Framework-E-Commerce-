@@ -4,7 +4,7 @@ import ProductsPage from '../pages/products.page'
 import ProductDetailsPage from '../pages/productDetails.page'
 
 describe('Product', () => {
-    it('', async () => {
+    it('should validate product data consistency between list and details page', async () => {
         const index = 0
         await ProductsPage.open()
         
@@ -17,7 +17,10 @@ describe('Product', () => {
         const detailPrice = await parsePrice(await ProductDetailsPage.getPrice())
         const detailName = await ProductDetailsPage.getName()
 
-        expect(listPrice).toEqual(detailPrice)
-        expect(listName).toEqual(detailName)
+        expect(listPrice).toBeGreaterThan(0)
+        expect(listName.length).toBeGreaterThan(0)
+        
+        expect(listPrice).toBe(detailPrice)
+        expect(listName).toBe(detailName)
     })
 })
