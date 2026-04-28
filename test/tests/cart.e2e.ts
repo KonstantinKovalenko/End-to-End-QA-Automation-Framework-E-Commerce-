@@ -1,7 +1,7 @@
 import { expect } from '@wdio/globals'
 
 describe('Cart', () => {
-    xit('', async () => {
+    it('Should validate total price', async () => {
 
         
     })

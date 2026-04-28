@@ -1,0 +1,10 @@
+export function parsePrice (priceInput: string){
+    if(priceInput.length === 0){
+        throw new Error(`parsePrice: no text found in input variable`)
+    }
+    const resultPrice = priceInput.match(/\d+(\.\d+)?/)
+    if(!resultPrice){
+        throw new Error (`parsePrice: no price found in ${resultPrice}`)
+    }
+    return parseFloat(resultPrice[0])
+}

@@ -5,17 +5,6 @@ export const users = {
     }
 }
 
-export const products = {
-    product1:{
-        name:'',
-        price:''
-    },
-    product2:{
-        name:'',
-        price:''
-    }
-}
-
 export const checkoutData = {
     valid: {
         name: 'Diana',

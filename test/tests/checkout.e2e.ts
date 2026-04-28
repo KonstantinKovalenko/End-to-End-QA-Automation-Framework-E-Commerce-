@@ -1,7 +1,7 @@
 import { expect } from '@wdio/globals'
 
 describe('Checkout', () => {
-    xit('', async () => {
+    it('', async () => {
 
         
     })
