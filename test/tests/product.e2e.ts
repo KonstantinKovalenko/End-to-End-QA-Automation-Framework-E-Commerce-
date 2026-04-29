@@ -8,8 +8,7 @@ describe('Product', () => {
         const index = 0
         await ProductsPage.open()
         
-        const listPrice = await parsePrice(await ProductsPage.getPriceByProductIndex(index))
-        const listName = await ProductsPage.getNameByProductIndex(index)
+        const listProduct = await ProductsPage.getListProduct(index)
 
         await ProductsPage.openInfoByIndex(index)
         expect (await browser.getUrl()).toContain('product_details')
@@ -17,10 +16,10 @@ describe('Product', () => {
         const detailPrice = await parsePrice(await ProductDetailsPage.getPrice())
         const detailName = await ProductDetailsPage.getName()
 
-        expect(listPrice).toBeGreaterThan(0)
-        expect(listName.length).toBeGreaterThan(0)
+        expect(listProduct.price).toBeGreaterThan(0)
+        expect(listProduct.name.length).toBeGreaterThan(0)
         
-        expect(listPrice).toBe(detailPrice)
-        expect(listName).toBe(detailName)
+        expect(listProduct.price).toBe(detailPrice)
+        expect(listProduct.name).toBe(detailName)
     })
 })
