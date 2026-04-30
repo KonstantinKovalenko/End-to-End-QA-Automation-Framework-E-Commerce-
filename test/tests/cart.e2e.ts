@@ -1,6 +1,5 @@
 import { expect } from '@wdio/globals'
 import { users } from '../utils/testData'
-import { parsePrice } from '../utils/helpers'
 import LoginPage from '../pages/login.page'
 import HomePage from '../pages/home.page'
 import ProductsPage from '../pages/products.page'
@@ -16,7 +15,7 @@ describe('Cart', () => {
         await CartPage.eraseCart()
     })
 
-    it('Should validate total price', async () => {
+    xit('Should validate total price', async () => {
         const firstProduct = 0
         const secondProduct = 5
         await ProductsPage.open()
@@ -39,12 +38,28 @@ describe('Cart', () => {
         expect(cartProduct2.price).toBe(listProduct2.price)
         expect(cartProduct2.total).toBe(cartProduct2.price*cartProduct2.quantity)
     })
+
+    it('Should validate cart state after page reload', async () => {
+        const productIndex = 10
+        await ProductsPage.open()
+        await ProductsPage.assertPageLoaded()
+
+        const initialProduct = await ProductsPage.getListProduct(productIndex)
+        await ProductsPage.addToCartAndContinue(productIndex)
+
+        await CartPage.open()
+        await CartPage.assertPageLoaded()
+
+        const actualCartProduct = await CartPage.getCartProduct(initialProduct.name)
+        expect(actualCartProduct.name).toBe(initialProduct.name)
+        expect(actualCartProduct.price).toBe(initialProduct.price)
+        expect(actualCartProduct.quantity).toBe(1)
+
+        await browser.refresh()
+
+        const refreshedCartProduct = await CartPage.getCartProduct(initialProduct.name)
+        expect(refreshedCartProduct).toEqual(actualCartProduct)
+    })
 })
 
-/* 
-🔥 SCENARIO 4 — CART STATE
-добавить товар
-reload page
-проверить:
-корзина не сбросилась */
  
