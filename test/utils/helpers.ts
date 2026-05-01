@@ -8,3 +8,7 @@ export function parsePrice (priceInput: string){
     }
     return parseFloat(resultPrice[0])
 }
+
+export function splitText (text: string){
+    return text.trim().split(/\s+/)
+}

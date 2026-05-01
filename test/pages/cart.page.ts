@@ -8,12 +8,24 @@ class CartPage {
     get #cartEmptyMessage () {return $('#empty_cart')}
     get #cartBreadcrumps () {return $('.breadcrumbs')}
 
+    get #checkoutBtn () {return $('[class="btn btn-default check_out"]')}
+
     async open (){
         await browser.url(this.#CARTURL)
     }
 
-    async assertPageLoaded(){
+    async assertPageLoaded (){
         await expect(this.#cartBreadcrumps).toBeDisplayed()
+    }
+
+    async assertCartIsNotEmpty(){
+        const result = await this.#cartEmptyMessage.isDisplayed()
+        expect(result).toBe(false)
+    }
+
+    async clickOnCheckoutBtn (){
+        await this.#checkoutBtn.waitForClickable()
+        await this.#checkoutBtn.click()
     }
 
     async getCartProduct (name: string){

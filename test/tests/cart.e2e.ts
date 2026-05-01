@@ -15,7 +15,7 @@ describe('Cart', () => {
         await CartPage.eraseCart()
     })
 
-    xit('Should validate total price', async () => {
+    it('Should validate total price', async () => {
         const firstProduct = 0
         const secondProduct = 5
         await ProductsPage.open()
