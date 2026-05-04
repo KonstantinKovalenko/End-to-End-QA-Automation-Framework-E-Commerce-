@@ -7,9 +7,11 @@ import CartPage from '../pages/cart.page'
 
 describe('Cart', () => {
     beforeEach(async () => {
-        await LoginPage.open()
-        await LoginPage.login(users.validUser.email, users.validUser.password)
-        expect(await HomePage.isLoggedIn()).toBe(true)
+        if(await HomePage.isLoggedIn() === false){
+            await LoginPage.open()
+            await LoginPage.login(users.validUser.email, users.validUser.password)
+            expect(await HomePage.isLoggedIn()).toBe(true)
+        }
 
         await CartPage.open()
         await CartPage.eraseCart()

@@ -1,12 +1,8 @@
 export const users = {
     validUser:{
-        email: 'kovakost.at@gmail.com',
-        password: 'QWEasd123890!'
-    },
-    checkoutUser:{
         email: 'mr.random@gmail.com',
-        password: 'QWE*asd123890',
-    }
+        password: 'QWE*asd123890'
+    },
 }
 
 export const addresses = {
